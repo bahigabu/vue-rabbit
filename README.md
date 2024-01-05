@@ -1,3 +1,8 @@
+## 项目接口
+项目接口使用黑马提供的接口.  
+接口：http://pcapi-xiaotuxian-front-devtest.itheima.net.  
+接口文档：https://www.apifox.cn/apidoc/shared-c05cb8d7-e591-4d9c-aff8-11065a0ec1de/api-67132167.
+
 # vue-rabbit
 
 This template should help get you started developing with Vue 3 in Vite.

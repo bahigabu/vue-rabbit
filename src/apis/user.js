@@ -1,0 +1,23 @@
+// 封裝所有和用戶相關的接口函數
+import request from "@/utils/http.js";
+export const loginAPI = ({ account, password }) => {
+  return request({
+    url: "/login",
+    method: "post",
+    data: {
+      account,
+      password,
+    },
+  });
+};
+
+export const getLikeListAPI = ({ limit = 4 }) => {
+  return request({
+    url: "/goods/relevant",
+    params: {
+      limit,
+    },
+  });
+};
+// 被pinia調用user.js
+// Member調用
