@@ -9,6 +9,16 @@ import { getCheckInfoAPI, createOrderAPI } from '@/apis/checkout.js';
 import { useCartStore } from '@/stores/cartStore.js';
 const cartStore = useCartStore();
 
+// 配送時間與支付方式按鈕切換
+const selectedOption = ref('all');
+const selectOption = (option) => {
+  selectedOption.value = option;
+};
+const willPayOption = ref('online');
+const payOption = (option) => {
+  willPayOption.value = option;
+};
+
 const checkInfo = ref({}); // 訂單對象
 const defaultAddress = ref({}); // 地址對象
 const toggleFlag = ref(false); // 控制顯示地址切換彈窗
@@ -121,15 +131,15 @@ onMounted(() => getCheckInfo());
         <!-- 配送時間 -->
         <h3 class="box-title">配送時間</h3>
         <div class="box-body">
-          <a class="my-btn active" href="javascript:;">不限送貨時間：周一至周日</a>
-          <a class="my-btn" href="javascript:;">工作日送貨：周一至周五</a>
-          <a class="my-btn" href="javascript:;">雙休日、假日送貨：周六至周日</a>
+          <a class="my-btn" :class="{'active': selectedOption === 'all'}" @click="selectOption('all')" href="javascript:;">不限送貨時間：周一至周日</a>
+          <a class="my-btn" :class="{'active':selectedOption === 'weekday'}" @click="selectOption('weekday')" href="javascript:;">工作日送貨：周一至周五</a>
+          <a class="my-btn" :class="{'active': selectedOption === 'weekend'}" @click="selectOption('weekend')" href="javascript:;">雙休日、假日送貨：周六至周日</a>
         </div>
         <!-- 支付方式 -->
         <h3 class="box-title">支付方式</h3>
         <div class="box-body">
-          <a class="my-btn active" href="javascript:;">線上支付</a>
-          <a class="my-btn" href="javascript:;">貨到付款</a>
+          <a class="my-btn" :class="{'active': willPayOption === 'online'}" @click="payOption('online')" href="javascript:;">線上支付</a>
+          <a class="my-btn" :class="{'active': willPayOption === 'here'}" @click="payOption('here')" href="javascript:;">貨到付款</a>
           <span style="color: #999">貨到付款需付5元手續費</span>
         </div>
         <!-- 金額明細 -->
