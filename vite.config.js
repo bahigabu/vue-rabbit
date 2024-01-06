@@ -44,5 +44,6 @@ export default defineConfig({
         `
       }
     }
-  }
+  },
+  base: '/vue-rabbit-gh-pages'
 });
